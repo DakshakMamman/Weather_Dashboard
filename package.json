@@ -1,0 +1,13 @@
+{
+  "name": "weather-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -i ./dist/style.css -o ./dist/tailwind.css",
+    "dev": "tailwindcss -i ./dist/style.css -o ./dist/tailwind.css --watch=always --poll=500"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0",
+    "tailwindcss": "^4.1.0"
+  }
+}
