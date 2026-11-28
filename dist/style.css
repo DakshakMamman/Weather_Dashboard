@@ -1,3 +1,17 @@
 @import "tailwindcss" source(none);
 @source "./index.html";
 @source "./script.js";
+
+.material-symbols-outlined {
+  font-feature-settings: "liga";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}

@@ -3,11 +3,240 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather Dashboard</title>
+    <meta name="theme-color" content="#080d18" />
+    <meta
+      name="description"
+      content="A clean, personal dashboard for current weather and forecasts."
+    />
+    <title>Weatherly — Your weather, at a glance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./tailwind.css" />
   </head>
-  <body class="bg-black">
-    <h1 class="text-white text-4xl text-center font-bold">hello world!</h1>
-    <script src="./script.js"></script>
+  <body class="min-h-screen bg-[#080d18] font-sans text-slate-100 antialiased selection:bg-sky-400/30">
+    <div class="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
+      <div class="absolute -left-48 -top-56 h-[36rem] w-[36rem] rounded-full bg-sky-500/[0.07] blur-[120px]"></div>
+      <div class="absolute -right-52 top-[28rem] h-[32rem] w-[32rem] rounded-full bg-indigo-500/[0.06] blur-[120px]"></div>
+    </div>
+
+    <div class="relative mx-auto flex min-h-screen w-full max-w-[1440px] flex-col px-5 pb-8 sm:px-8 lg:px-12">
+      <header class="flex items-center justify-between border-b border-white/[0.07] py-5">
+        <a class="group inline-flex items-center gap-3" href="#" aria-label="Weatherly home">
+          <span class="grid size-10 place-items-center rounded-[14px] border border-sky-300/15 bg-sky-400/10 text-sky-300 shadow-[0_0_30px_rgba(56,189,248,0.08)]">
+            <span class="material-symbols-outlined text-[22px] leading-none" aria-hidden="true">cloud_upload</span>
+          </span>
+          <span class="text-[17px] font-semibold tracking-tight text-white">weatherly<span class="text-sky-300">.</span></span>
+        </a>
+        <div class="hidden items-center gap-2 text-xs font-medium text-slate-500 sm:flex">
+          <span class="size-1.5 rounded-full bg-emerald-400/80"></span>
+          <span>Weather, made simple</span>
+        </div>
+      </header>
+
+      <main class="flex flex-1 flex-col py-8 sm:py-10">
+        <section class="mx-auto w-full max-w-3xl text-center">
+          <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-300/80">Your personal forecast</p>
+          <h1 class="text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">A little more in tune<br class="sm:hidden" /> with the weather.</h1>
+          <p class="mx-auto mt-3 max-w-lg text-sm leading-6 text-slate-400 sm:text-[15px]">Find a city to see what the sky has in store.</p>
+
+          <form class="mx-auto mt-7 flex w-full max-w-xl items-center gap-2 rounded-2xl border border-white/10 bg-[#111a29]/90 p-1.5 shadow-[0_18px_60px_rgba(0,0,0,0.2)] transition focus-within:border-sky-300/30 focus-within:ring-4 focus-within:ring-sky-400/[0.06]" role="search">
+            <label class="sr-only" for="city-search">Search for a city</label>
+            <span class="material-symbols-outlined ml-3 shrink-0 text-xl leading-none text-slate-500" aria-hidden="true">search</span>
+            <input id="city-search" name="city" type="search" autocomplete="off" placeholder="Search any city..." class="h-11 min-w-0 flex-1 bg-transparent px-1 text-sm text-white outline-none placeholder:text-slate-500" />
+            <button type="button" class="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-sky-400 px-4 text-sm font-semibold text-slate-950 shadow-lg shadow-sky-950/20 transition hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 active:scale-[0.98] sm:px-5">
+              <span>Search</span>
+              <span class="material-symbols-outlined text-base leading-none" aria-hidden="true">east</span>
+            </button>
+          </form>
+        </section>
+
+        <section class="mt-9 grid w-full grid-cols-1 gap-4 lg:grid-cols-12" aria-label="Weather dashboard">
+          <article class="relative isolate min-h-[300px] overflow-hidden rounded-[26px] border border-sky-200/[0.12] bg-gradient-to-br from-[#142b43] via-[#12253b] to-[#171d35] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.2)] sm:p-8 lg:col-span-7">
+            <div class="pointer-events-none absolute -right-16 -top-20 -z-10 size-80 rounded-full bg-sky-300/[0.09] blur-[70px]" aria-hidden="true"></div>
+            <div class="pointer-events-none absolute -bottom-28 left-1/4 -z-10 size-72 rounded-full bg-indigo-400/[0.08] blur-[80px]" aria-hidden="true"></div>
+            <div class="flex h-full flex-col justify-between gap-10">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <p class="text-xs font-medium uppercase tracking-[0.16em] text-sky-100/60">Current weather</p>
+                  <div class="mt-3 flex items-center gap-2.5">
+                    <span class="material-symbols-outlined shrink-0 text-xl leading-none text-sky-200/80" aria-hidden="true">location_on</span>
+                    <h2 class="truncate text-lg font-medium text-white sm:text-xl">Search for a city</h2>
+                  </div>
+                  <p class="mt-1 pl-[30px] text-sm text-sky-100/50">Your location will appear here</p>
+                </div>
+                <span class="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5 text-[11px] font-medium text-sky-100/60">LIVE WEATHER</span>
+              </div>
+
+              <div class="flex items-end justify-between gap-4">
+                <div>
+                  <div class="flex items-start">
+                    <span class="text-[76px] font-light leading-[0.9] tracking-[-0.08em] text-white sm:text-[92px]" aria-label="Temperature unavailable">--</span>
+                    <span class="ml-2 mt-1 text-3xl font-light text-sky-100/80">°C</span>
+                  </div>
+                  <p class="mt-4 text-base font-medium text-white/90">Weather details will appear here</p>
+                  <p class="mt-1 text-sm text-sky-100/50">Feels like <span class="ml-1 text-sky-100/75">--°</span></p>
+                </div>
+                <div class="mb-1 hidden size-28 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.04] text-sky-100/60 sm:flex">
+                  <span class="material-symbols-outlined text-6xl leading-none" aria-hidden="true">cloud</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-[26px] border border-white/[0.08] bg-[#101827]/80 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.12)] sm:p-7 lg:col-span-5" aria-labelledby="conditions-heading">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 id="conditions-heading" class="text-base font-semibold text-white">Weather details</h2>
+                <p class="mt-1 text-xs text-slate-500">The essentials, at a glance</p>
+              </div>
+              <span class="grid size-9 place-items-center rounded-xl border border-white/[0.07] bg-white/[0.03] text-slate-400">
+                <span class="material-symbols-outlined text-lg leading-none" aria-hidden="true">analytics</span>
+              </span>
+            </div>
+            <div class="mt-5 grid grid-cols-2 gap-3">
+              <div class="rounded-2xl border border-white/[0.06] bg-white/[0.025] p-4 transition hover:border-white/[0.12] hover:bg-white/[0.04]">
+                <div class="flex items-center gap-2 text-sky-300/80">
+                  <span class="material-symbols-outlined text-base leading-none" aria-hidden="true">water_drop</span>
+                  <span class="text-xs text-slate-400">Humidity</span>
+                </div>
+                <p class="mt-3 text-xl font-semibold text-white">--<span class="ml-0.5 text-sm font-medium text-slate-500">%</span></p>
+              </div>
+              <div class="rounded-2xl border border-white/[0.06] bg-white/[0.025] p-4 transition hover:border-white/[0.12] hover:bg-white/[0.04]">
+                <div class="flex items-center gap-2 text-cyan-300/80">
+                  <span class="material-symbols-outlined text-base leading-none" aria-hidden="true">air</span>
+                  <span class="text-xs text-slate-400">Wind speed</span>
+                </div>
+                <p class="mt-3 text-xl font-semibold text-white">--<span class="ml-1 text-sm font-medium text-slate-500">km/h</span></p>
+              </div>
+              <div class="rounded-2xl border border-white/[0.06] bg-white/[0.025] p-4 transition hover:border-white/[0.12] hover:bg-white/[0.04]">
+                <div class="flex items-center gap-2 text-violet-300/80">
+                  <span class="material-symbols-outlined text-base leading-none" aria-hidden="true">speed</span>
+                  <span class="text-xs text-slate-400">Pressure</span>
+                </div>
+                <p class="mt-3 text-xl font-semibold text-white">----<span class="ml-1 text-sm font-medium text-slate-500">hPa</span></p>
+              </div>
+              <div class="rounded-2xl border border-white/[0.06] bg-white/[0.025] p-4 transition hover:border-white/[0.12] hover:bg-white/[0.04]">
+                <div class="flex items-center gap-2 text-amber-200/80">
+                  <span class="material-symbols-outlined text-base leading-none" aria-hidden="true">visibility</span>
+                  <span class="text-xs text-slate-400">Visibility</span>
+                </div>
+                <p class="mt-3 text-xl font-semibold text-white">--<span class="ml-1 text-sm font-medium text-slate-500">km</span></p>
+              </div>
+              <div class="col-span-2 rounded-2xl border border-white/[0.06] bg-white/[0.025] p-4 transition hover:border-white/[0.12] hover:bg-white/[0.04]">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2 text-orange-300/80">
+                    <span class="material-symbols-outlined text-base leading-none" aria-hidden="true">wb_sunny</span>
+                    <span class="text-xs text-slate-400">UV index</span>
+                  </div>
+                  <p class="text-xl font-semibold text-white">--</p>
+                </div>
+                <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
+                  <div class="h-full w-0 rounded-full bg-gradient-to-r from-emerald-300 via-amber-300 to-rose-400"></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="min-w-0 rounded-[26px] border border-white/[0.08] bg-[#101827]/80 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.12)] sm:p-7 lg:col-span-7" aria-labelledby="hourly-heading">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h2 id="hourly-heading" class="text-base font-semibold text-white">Hourly forecast</h2>
+                <p class="mt-1 text-xs text-slate-500">A look at the next 24 hours</p>
+              </div>
+              <span class="hidden rounded-full border border-white/[0.07] bg-white/[0.03] px-3 py-1.5 text-[11px] text-slate-400 sm:inline-flex">NEXT 24 HOURS</span>
+            </div>
+            <div class="mt-6 flex snap-x gap-3 overflow-x-auto pb-2 [scrollbar-width:thin] [scrollbar-color:rgba(148,163,184,0.2)_transparent]">
+              <div class="flex min-w-[78px] snap-start flex-1 flex-col items-center rounded-2xl border border-sky-300/10 bg-sky-300/[0.06] px-3 py-4">
+                <span class="text-xs font-medium text-sky-100/70">Now</span>
+                <svg class="my-4 size-7 text-sky-200/50" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M9 22h14a5.5 5.5 0 0 0 .5-11 8 8 0 0 0-15.8 1.1A5 5 0 0 0 9 22Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <span class="text-sm font-semibold text-white">--°</span>
+              </div>
+              <div class="flex min-w-[78px] snap-start flex-1 flex-col items-center rounded-2xl border border-white/[0.05] bg-white/[0.02] px-3 py-4">
+                <span class="text-xs font-medium text-slate-500">+3h</span>
+                <span class="material-symbols-outlined my-4 text-3xl leading-none text-slate-500" aria-hidden="true">cloud</span>
+                <span class="text-sm font-semibold text-slate-300">--°</span>
+              </div>
+              <div class="flex min-w-[78px] snap-start flex-1 flex-col items-center rounded-2xl border border-white/[0.05] bg-white/[0.02] px-3 py-4">
+                <span class="text-xs font-medium text-slate-500">+6h</span>
+                <span class="material-symbols-outlined my-4 text-3xl leading-none text-slate-500" aria-hidden="true">cloud</span>
+                <span class="text-sm font-semibold text-slate-300">--°</span>
+              </div>
+              <div class="flex min-w-[78px] snap-start flex-1 flex-col items-center rounded-2xl border border-white/[0.05] bg-white/[0.02] px-3 py-4">
+                <span class="text-xs font-medium text-slate-500">+9h</span>
+                <span class="material-symbols-outlined my-4 text-3xl leading-none text-slate-500" aria-hidden="true">cloud</span>
+                <span class="text-sm font-semibold text-slate-300">--°</span>
+              </div>
+              <div class="flex min-w-[78px] snap-start flex-1 flex-col items-center rounded-2xl border border-white/[0.05] bg-white/[0.02] px-3 py-4">
+                <span class="text-xs font-medium text-slate-500">+12h</span>
+                <span class="material-symbols-outlined my-4 text-3xl leading-none text-slate-500" aria-hidden="true">cloud</span>
+                <span class="text-sm font-semibold text-slate-300">--°</span>
+              </div>
+              <div class="flex min-w-[78px] snap-start flex-1 flex-col items-center rounded-2xl border border-white/[0.05] bg-white/[0.02] px-3 py-4">
+                <span class="text-xs font-medium text-slate-500">+15h</span>
+                <span class="material-symbols-outlined my-4 text-3xl leading-none text-slate-500" aria-hidden="true">cloud</span>
+                <span class="text-sm font-semibold text-slate-300">--°</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-[26px] border border-white/[0.08] bg-[#101827]/80 p-6 shadow-[0_24px_80px_rgba(0,0,0,0.12)] sm:p-7 lg:col-span-5" aria-labelledby="weekly-heading">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <h2 id="weekly-heading" class="text-base font-semibold text-white">7-day forecast</h2>
+                <p class="mt-1 text-xs text-slate-500">Plan a little further ahead</p>
+              </div>
+              <span class="material-symbols-outlined text-xl leading-none text-slate-500" aria-hidden="true">calendar_month</span>
+            </div>
+            <div class="mt-4 divide-y divide-white/[0.055]">
+              <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3 py-3 first:pt-1">
+                <span class="text-sm font-medium text-slate-300">Today</span>
+                <span class="material-symbols-outlined text-xl leading-none text-slate-500" aria-hidden="true">cloud</span>
+                <span class="text-right text-sm font-medium text-slate-500">--° <span class="ml-2 text-slate-300">--°</span></span>
+              </div>
+              <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3 py-3">
+                <span class="text-sm font-medium text-slate-400">Tomorrow</span>
+                <span class="material-symbols-outlined text-xl leading-none text-slate-500" aria-hidden="true">cloud</span>
+                <span class="text-right text-sm font-medium text-slate-500">--° <span class="ml-2 text-slate-300">--°</span></span>
+              </div>
+              <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3 py-3">
+                <span class="text-sm font-medium text-slate-400">Day 3</span>
+                <span class="material-symbols-outlined text-xl leading-none text-slate-500" aria-hidden="true">cloud</span>
+                <span class="text-right text-sm font-medium text-slate-500">--° <span class="ml-2 text-slate-300">--°</span></span>
+              </div>
+              <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3 py-3">
+                <span class="text-sm font-medium text-slate-400">Day 4</span>
+                <span class="material-symbols-outlined text-xl leading-none text-slate-500" aria-hidden="true">cloud</span>
+                <span class="text-right text-sm font-medium text-slate-500">--° <span class="ml-2 text-slate-300">--°</span></span>
+              </div>
+              <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3 py-3">
+                <span class="text-sm font-medium text-slate-400">Day 5</span>
+                <span class="material-symbols-outlined text-xl leading-none text-slate-500" aria-hidden="true">cloud</span>
+                <span class="text-right text-sm font-medium text-slate-500">--° <span class="ml-2 text-slate-300">--°</span></span>
+              </div>
+              <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3 py-3">
+                <span class="text-sm font-medium text-slate-400">Day 6</span>
+                <span class="material-symbols-outlined text-xl leading-none text-slate-500" aria-hidden="true">cloud</span>
+                <span class="text-right text-sm font-medium text-slate-500">--° <span class="ml-2 text-slate-300">--°</span></span>
+              </div>
+              <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3 py-3 last:pb-0">
+                <span class="text-sm font-medium text-slate-400">Day 7</span>
+                <span class="material-symbols-outlined text-xl leading-none text-slate-500" aria-hidden="true">cloud</span>
+                <span class="text-right text-sm font-medium text-slate-500">--° <span class="ml-2 text-slate-300">--°</span></span>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+
+      <footer class="flex flex-col items-center justify-between gap-2 border-t border-white/[0.06] py-5 text-xs text-slate-600 sm:flex-row">
+        <span>weatherly<span class="text-sky-400/70">.</span> <span class="ml-1">A clearer view of your day.</span></span>
+        <span>Live forecast data will appear when you search a city.</span>
+      </footer>
+    </div>
+    <script src="./script.js" defer></script>
   </body>
 </html>
